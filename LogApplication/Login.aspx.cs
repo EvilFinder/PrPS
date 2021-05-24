@@ -13,6 +13,7 @@ namespace LogApplication
     public partial class Login : System.Web.UI.Page
     {
         private SqlConnection con;
+        private Button but;
         protected async void Page_Load(object sender, EventArgs e)
         {
             var connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
@@ -56,7 +57,18 @@ namespace LogApplication
                 Response.Cookies.Add(login);
                 Response.Cookies.Add(sign);
                 Response.Redirect("UserPage.aspx", false);
+                return;
             }
+
+            if (!userData.ContainsKey(TextBox1.Text))
+            {
+                var script = "alert ('Неверное имя пользователя или пароль!')";
+                ClientScript.RegisterClientScriptBlock(GetType(), "MessageBox", script, true);
+                TextBox1.Text = "";
+                return;
+            }
+
+            
         }
 
         protected void Page_Unload(object sender, EventArgs e)

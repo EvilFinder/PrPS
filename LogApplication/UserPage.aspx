@@ -5,12 +5,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    
-
-
-    
+    <link href="Styles/Header.css" rel="stylesheet" />
+</head>
+    <body>
 
     <form id="form1" runat="server">
+        <header>
+            <asp:Image ID="Image2" ImageUrl="~/BibTeX_logo.svg.png" runat="server" CssClass="img" />
+            <p>Bibliographic System</p>
+        </header>
         <div id="Menu">
              <ul>
                  <li> <a href="MainPage.aspx">Home</a></li>

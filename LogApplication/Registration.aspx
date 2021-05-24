@@ -8,9 +8,14 @@
     <title></title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  
     <link rel="stylesheet" href="~/css/site.css" />
+    <link href="Styles/Header.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
+        <header>
+            <asp:Image ID="Image1" ImageUrl="~/BibTeX_logo.svg.png" runat="server" CssClass="img" />
+            <p>Bibliographic System</p>
+        </header>
         <div>
             <asp:Table ID="Table1" runat="server">
                

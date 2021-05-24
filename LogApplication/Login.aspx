@@ -5,13 +5,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="Styles/Header.css" rel="stylesheet" />
 </head>
 <body>
     <form id="form1" runat="server">
+        <header>
+            <asp:Image ID="Image1" ImageUrl="~/BibTeX_logo.svg.png" runat="server" CssClass="img" />
+            <p>Bibliographic System</p>
+        </header>
         <div>
             <asp:Table ID="Table1" runat="server">
-               
-                <asp:TableRow>
+            <asp:TableRow>
                     <asp:TableCell ColumnSpan="2" HorizontalAlign="Center">
                         <asp:Label ID="Label1" runat="server" Text="Entrance form"></asp:Label>
                     </asp:TableCell>
@@ -43,5 +47,5 @@
             </asp:Table>
         </div>
     </form>
-</body>
+</body> 
 </html>
