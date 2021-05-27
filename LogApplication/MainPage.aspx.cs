@@ -13,5 +13,10 @@ namespace LogApplication
         {
 
         }
+
+        protected void Search_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

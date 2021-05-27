@@ -26,8 +26,9 @@ namespace LogApplication
             var userData = new Dictionary<string, string>();
             var getUsersCredits = new SqlCommand("SELECT [Login], [Password] FROM [Table] WHERE Login=@Login AND Password=@Password", con);
 
-            getUsersCredits.Parameters.AddWithValue("Login", TextBox1.Text);
-            getUsersCredits.Parameters.AddWithValue("Password", TextBox2.Text);
+            var (userLogin, password) = (Request.Form["UserLogin"], Request.Form["UserPassword"]);
+            getUsersCredits.Parameters.AddWithValue("Login", userLogin);
+            getUsersCredits.Parameters.AddWithValue("Password", password);
             SqlDataReader dataReader = null;
             try
             {
@@ -49,10 +50,10 @@ namespace LogApplication
                 }
             }
 
-            if (userData.ContainsKey(TextBox1.Text) && TextBox2.Text == userData[TextBox1.Text])
+            if (userData.ContainsKey(userLogin) && password == userData[userLogin])
             {
-                var login = new HttpCookie("login", TextBox1.Text);
-                var sign = new HttpCookie("sign", SignGenerator.GetSign(TextBox1.Text + "byteapp"));
+                var login = new HttpCookie("login", userLogin);
+                var sign = new HttpCookie("sign", SignGenerator.GetSign(userLogin + "byteapp"));
 
                 Response.Cookies.Add(login);
                 Response.Cookies.Add(sign);
@@ -60,11 +61,11 @@ namespace LogApplication
                 return;
             }
 
-            if (!userData.ContainsKey(TextBox1.Text))
+            if (!userData.ContainsKey(userLogin))
             {
                 var script = "alert ('Неверное имя пользователя или пароль!')";
                 ClientScript.RegisterClientScriptBlock(GetType(), "MessageBox", script, true);
-                TextBox1.Text = "";
+                Request.Form["UserLogin"] = "";
                 return;
             }
 

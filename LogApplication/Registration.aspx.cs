@@ -45,23 +45,24 @@ namespace LogApplication
                 }
             }
 
-            if (userData.ContainsKey(TextBox1.Text))
+            var (login, password, confirmPassword, email) = (Request.Form["UserLogin"], Request.Form["UserPassword"], Request.Form["ConfirmPassword"], Request.Form["UserEmail"]);
+            if (userData.ContainsKey(login))
             {
                 var script = "alert ('Такой логин уже есть!')";
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "MessageBox", script, true);
                 return;
             }
 
-            if (TextBox2.Text != TextBox3.Text)
+            if (password != confirmPassword)
             {
                 var script = "alert ('Пароли не совпадают!')";
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "MessageBox", script, true);
                 return;
             }
             var regUser = new SqlCommand("INSERT INTO [Table] (Login, Password, Email) VALUES(@Login, @Password, @Email)", con);
-            regUser.Parameters.AddWithValue("Login", TextBox1.Text);
-            regUser.Parameters.AddWithValue("Password", TextBox2.Text);
-            regUser.Parameters.AddWithValue("Email", TextBox4.Text);
+            regUser.Parameters.AddWithValue("Login", login);
+            regUser.Parameters.AddWithValue("Password", password);
+            regUser.Parameters.AddWithValue("Email", email);
 
             await regUser.ExecuteNonQueryAsync();
             Response.Redirect("Login.aspx", false);  

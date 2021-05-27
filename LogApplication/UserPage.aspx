@@ -6,11 +6,24 @@
 <head runat="server">
     <title></title>
     <link href="Styles/Header.css" rel="stylesheet" />
+    <link href="Styles/mainPage.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
 </head>
     <body>
-
+        <div class="topnav">
+        <a href="MainPage.aspx">Home</a>
+        <a class="active" href="UserPage.aspx">Account</a>
+        <a href="#contact">Contact</a>
+        <div class="search-container" >
+            <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search" />
+            <button type="submit"><i class="fa fa-search" onclick="Search_Click"></i></button>
+            </form>
+        </div>
+    </div>
     <form id="form1" runat="server">
-        <header>
+       <%-- <header>
             <asp:Image ID="Image2" ImageUrl="~/BibTeX_logo.svg.png" runat="server" CssClass="img" />
             <p>Bibliographic System</p>
         </header>
@@ -20,7 +33,7 @@
                  <li> <a href="UserPage.aspx">Account</a></li>
              </ul>    
       
-        </div>
+        </div>--%>
         <div>
             <asp:Table ID="Table1" runat="server" style="width: 300px; margin-left: 20px; margin-top: 15px;" HorizontalAlign="Right">
                 <asp:TableRow>
